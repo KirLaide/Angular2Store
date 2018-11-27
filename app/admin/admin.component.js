@@ -9,16 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../model/auth.service");
+var AdminComponent = (function () {
+    function AdminComponent(auth, router) {
+        this.auth = auth;
+        this.router = router;
     }
-    AppComponent = __decorate([
+    AdminComponent.prototype.logout = function () {
+        this.auth.clear();
+        this.router.navigateByUrl("/");
+    };
+    AdminComponent = __decorate([
         core_1.Component({
-            selector: "app",
-            template: "<router-outlet></router-outlet>"
+            moduleId: module.id,
+            templateUrl: "admin.component.html"
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
+    ], AdminComponent);
+    return AdminComponent;
 }());
-exports.AppComponent = AppComponent;
+exports.AdminComponent = AdminComponent;

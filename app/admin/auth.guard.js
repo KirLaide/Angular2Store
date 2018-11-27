@@ -9,16 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../model/auth.service");
+var AuthGuard = (function () {
+    function AuthGuard(router, auth) {
+        this.router = router;
+        this.auth = auth;
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: "app",
-            template: "<router-outlet></router-outlet>"
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    AuthGuard.prototype.canActivate = function (route, state) {
+        if (!this.auth.authenticated) {
+            this.router.navigateByUrl("/admin/auth");
+            return false;
+        }
+        return true;
+    };
+    AuthGuard = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [router_1.Router, auth_service_1.AuthService])
+    ], AuthGuard);
+    return AuthGuard;
 }());
-exports.AppComponent = AppComponent;
+exports.AuthGuard = AuthGuard;

@@ -12,7 +12,7 @@ export class ProductTableComponent {
     constructor(private repository: ProductRepository) { }
 
     getProduct(): Product[] {
-        return this.repository.getProduct();
+        return this.repository.getProducts();
     }
 
     deleteProduct(id: number)

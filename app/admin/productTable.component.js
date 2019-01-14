@@ -15,7 +15,7 @@ var ProductTableComponent = (function () {
         this.repository = repository;
     }
     ProductTableComponent.prototype.getProduct = function () {
-        return this.repository.getProduct();
+        return this.repository.getProducts();
     };
     ProductTableComponent.prototype.deleteProduct = function (id) {
         this.repository.deleteProduct(id);
